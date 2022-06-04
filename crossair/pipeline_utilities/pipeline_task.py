@@ -1,5 +1,5 @@
-from snowyovl.camera_utilities.video_camera import VideoCamera
-from snowyovl.pipeline_utilities.pipeline import Pipeline
+from crossair.camera_utilities.video_camera import VideoCamera
+from crossair.pipeline_utilities.pipeline import Pipeline
 
 
 class PipelineIteration:

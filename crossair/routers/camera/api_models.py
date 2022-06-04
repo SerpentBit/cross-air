@@ -2,7 +2,7 @@ from typing import Dict
 
 import pydantic
 
-from snowyovl.camera_utilities.typing import CameraSource
+from crossair.camera_utilities.typing import CameraSource
 
 
 class CameraStatus(pydantic.BaseModel):

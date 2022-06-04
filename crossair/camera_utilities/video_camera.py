@@ -3,7 +3,7 @@ import asyncio
 import cv2
 import structlog as structlog
 
-from snowyovl.camera_utils.typing import CameraParameters
+from crossair.camera_utilities.typing import CameraParameters
 
 
 class EncodeError(Exception):

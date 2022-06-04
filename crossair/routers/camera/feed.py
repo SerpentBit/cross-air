@@ -2,8 +2,8 @@ from fastapi import Depends, APIRouter
 from starlette.responses import StreamingResponse
 from structlog import get_logger
 
-from snowyovl.routers.dependencies.camera_dependency import camera_session_id, ensure_camera
-from snowyovl.routers.dependencies.session import provide_session_handler
+from crossair.routers.dependencies.camera_dependency import camera_session_id, ensure_camera
+from crossair.routers.dependencies.session import provide_session_handler
 
 stream = APIRouter()
 

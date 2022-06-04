@@ -1,10 +1,10 @@
 from fastapi import APIRouter, Depends
 
-from snowyovl.camera_utils.camera_handler import CameraHandler
-from snowyovl.camera_utils.response_models import CameraConfigurationResponse
-from snowyovl.camera_utils.typing import CameraConfiguration, CameraSource
-from snowyovl.camera_utils.exceptions import CameraConfigurationError
-from snowyovl.dependencies import ensure_camera
+from crossair.camera_utilities.camera_handler import CameraHandler
+from crossair.camera_utilities.response_models import CameraConfigurationResponse
+from crossair.camera_utilities.typing import CameraConfiguration, CameraSource
+from crossair.camera_utilities.exceptions import CameraConfigurationError
+from crossair.routers.dependencies.camera_dependency import ensure_camera
 
 camera_configuration = APIRouter()
 

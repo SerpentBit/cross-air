@@ -7,10 +7,10 @@ from fastapi import Depends, HTTPException
 from starlette import status
 from structlog import get_logger
 
-from snowyovl.app import CAMERA_START_DELAY
-from snowyovl.camera_utilities.camera_handler import CameraHandler
-from snowyovl.camera_utilities.typing import CameraSource
-from snowyovl.camera_utilities.video_camera import VideoCamera
+from crossair.app import CAMERA_START_DELAY
+from crossair.camera_utilities.camera_handler import CameraHandler
+from crossair.camera_utilities.typing import CameraSource
+from crossair.camera_utilities.video_camera import VideoCamera
 
 logger = get_logger(__name__)
 
