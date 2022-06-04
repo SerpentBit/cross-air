@@ -1,4 +1,4 @@
-from snowyovl.camera_utils.video_camera import VideoCamera
+from crossair.camera_utilities.video_camera import VideoCamera
 
 
 class CameraHandler:

@@ -3,8 +3,8 @@ from starlette.requests import Request
 from starlette.responses import StreamingResponse
 from starlette.types import Send
 
-from snowyovl.app import prepare_image
-from snowyovl.routers.dependencies.camera_dependency import ensure_camera
+from crossair.app import prepare_image
+from crossair.routers.dependencies.camera_dependency import ensure_camera
 
 
 class ImageStream(StreamingResponse):

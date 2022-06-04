@@ -2,7 +2,7 @@ from typing import List, Optional
 
 from pydantic import BaseModel
 
-from snowyovl.camera_utils.typing import CameraParameters
+from crossair.camera_utilities.typing import CameraParameters
 
 
 class CameraConfigurationResponse(BaseModel):
