@@ -1,8 +1,20 @@
+import copy
+
 import ovl
 from fastapi import HTTPException
 from starlette import status
 
-pipelines = {}
+target_filters = [ovl.percent_area_filter(minimal_percent=2), ovl.area_sort()]
+
+red_circle = ovl.Vision(target_filters=target_filters, threshold=ovl.HSV.red)
+green_circle = copy.copy(red_circle)
+green_circle.detector = ovl.ThresholdDetector(threshold=ovl.HSV.green)
+
+yellow_circle = copy.copy(red_circle)
+yellow_circle.detector = ovl.ThresholdDetector(threshold=ovl.HSV.yellow)
+
+
+pipelines = {"Red": red_circle, "Green": green_circle, "Yellow": yellow_circle}
 
 
 async def provide_pipeline(pipeline_id) -> ovl.Vision:
