@@ -4,7 +4,7 @@ from crossair.camera_utilities.camera_handler import CameraHandler
 from crossair.camera_utilities.response_models import CameraConfigurationResponse
 from crossair.camera_utilities.typing import CameraConfiguration, CameraSource
 from crossair.camera_utilities.exceptions import CameraConfigurationError
-from crossair.routers.dependencies.camera_dependency import ensure_camera
+from crossair.dependencies.camera_dependency import ensure_camera
 
 camera_configuration = APIRouter()
 
