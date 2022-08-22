@@ -2,10 +2,10 @@ from fastapi import Depends, APIRouter
 from starlette.responses import StreamingResponse
 from structlog import get_logger
 
-from crossair.routers.dependencies.camera_dependency import camera_session_id, ensure_camera
-from crossair.routers.dependencies.session import provide_session_handler
+from crossair.dependencies.camera_dependency import camera_session_id, ensure_camera
+from crossair.dependencies.session import provide_session_handler
 
-stream = APIRouter()
+stream = APIRouter(prefix="/cameras/{source}/feeds")
 
 logger = get_logger(__name__)
 
@@ -20,7 +20,7 @@ async def provide_raw_camera_feed(camera=Depends(ensure_camera)):
     return raw_camera_feed
 
 
-@stream.get("/cameras/{source}/feed/raw", response_class=StreamingResponse)
+@stream.get("/raw", response_class=StreamingResponse)
 async def video_feed(source, camera_feed=Depends(provide_raw_camera_feed), session=Depends(provide_session_handler),
                      uuid: str = Depends(camera_session_id)):
     logger.info(f"New consumer {uuid} for raw feed {source}")
@@ -28,7 +28,7 @@ async def video_feed(source, camera_feed=Depends(provide_raw_camera_feed), sessi
     return StreamingResponse(feed, media_type=IMAGE_STREAM_MEDIA_TYPE)
 
 
-@stream.get("/cameras/{source}/feed/filtered", response_class=StreamingResponse)
+@stream.get("filtered", response_class=StreamingResponse)
 async def video_feed(source, feed=Depends(provide_raw_camera_feed), uuid: str = Depends(camera_session_id),
                      session=Depends(provide_session_handler)):
     logger.info(f"New consumer {uuid} for filtered feed {source}")
