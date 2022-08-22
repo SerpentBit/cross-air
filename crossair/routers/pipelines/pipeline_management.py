@@ -9,8 +9,7 @@ pipeline_management = APIRouter()
 
 @pipeline_management.post("/create")
 async def create_pipeline(pipeline_id: str, pipeline: Pipeline = Depends(extract_pipeline)):
-
-
+    raise HTTPException(status_code=status.HTTP_423_LOCKED, detail="Creating Pipelines isn't implement yet")
 
 
 # TODO: Define loadout functionality in the general sense
