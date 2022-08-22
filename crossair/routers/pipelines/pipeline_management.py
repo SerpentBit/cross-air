@@ -2,7 +2,7 @@ from fastapi import APIRouter, HTTPException, Depends
 from starlette import status
 
 from crossair.pipeline_utilities.pipeline import Pipeline
-from crossair.routers.dependencies.pipelines import extract_pipeline
+from crossair.dependencies.pipelines import extract_pipeline
 
 pipeline_management = APIRouter()
 
