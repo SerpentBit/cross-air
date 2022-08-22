@@ -7,7 +7,6 @@ from fastapi import Depends, HTTPException
 from starlette import status
 from structlog import get_logger
 
-from crossair.app import CAMERA_START_DELAY
 from crossair.camera_utilities.camera_handler import CameraHandler
 from crossair.camera_utilities.typing import CameraSource
 from crossair.camera_utilities.video_camera import VideoCamera
@@ -57,3 +56,6 @@ async def get_camera(source: int) -> Union[VideoCamera, None]:
         return None
     else:
         return cameras[source].camera
+
+
+CAMERA_START_DELAY = 1
