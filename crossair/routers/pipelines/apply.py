@@ -27,11 +27,9 @@ class PipelineApplication(BaseModel):
     stage: PipelineStage
 
 
-
 @apply.post("/apply")
 async def test_pipeline(image=UploadFile, pipeline=Depends(provide_pipeline), application=PipelineApplication):
     stage_result = image
     for stage_name, stage_function in stage_functions(application.stage, pipeline):
         result = stage_function(stage_result)
-
-
+    return stage_result
