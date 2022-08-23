@@ -34,3 +34,4 @@ class PipelineTask:
             self.iteration.directions = self.pipeline.pipeline.get_directions(targets, image)
 
     def run_pipeline(self, source: VideoCamera):
+        pass

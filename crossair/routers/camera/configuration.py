@@ -20,5 +20,5 @@ async def change_camera_configuration(source: CameraSource, configuration: Camer
     try:
         # TODO: Implement camera configuration failure handling
         return CameraConfigurationResponse(message=f"Successfully configured camera {source}", )
-    except CameraConfigurationError as e:
+    except CameraConfigurationError as error:
         return f"Failed to configure camera {source}"

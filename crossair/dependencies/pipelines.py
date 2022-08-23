@@ -1,6 +1,7 @@
 import copy
 
 import ovl
+import pydantic
 from fastapi import HTTPException
 from starlette import status
 
@@ -12,7 +13,6 @@ green_circle.detector = ovl.ThresholdDetector(threshold=ovl.HSV.green)
 
 yellow_circle = copy.copy(red_circle)
 yellow_circle.detector = ovl.ThresholdDetector(threshold=ovl.HSV.yellow)
-
 
 pipelines = {"Red": red_circle, "Green": green_circle, "Yellow": yellow_circle}
 
@@ -30,3 +30,15 @@ async def add_pipeline(pipeline_id, pipeline):
                             detail=f"Pipeline {pipeline_id} already exists")
     pipelines[pipeline_id] = pipeline
     return pipeline_id, pipeline
+
+
+class PipelineDeltaBase(pydantic.BaseModel):
+    pass
+
+
+class SerializedVision(pydantic.BaseModel):
+    pass
+
+
+async def extract_pipeline(pipeline_package: SerializedVision | PipelineDeltaBase):
+    raise NotImplementedError()

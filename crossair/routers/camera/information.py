@@ -1,8 +1,8 @@
 import fastapi
 from fastapi import Depends
 
+from crossair.dependencies.camera_dependency import get_camera, cameras
 from crossair.routers.camera.api_models import CamerasStatuses
-from crossair.routers.dependencies.camera_dependency import get_camera, cameras
 
 information = fastapi.APIRouter(dependencies=[Depends(get_camera)])
 
