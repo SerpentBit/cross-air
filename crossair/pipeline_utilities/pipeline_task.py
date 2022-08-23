@@ -20,10 +20,10 @@ class PipelineTask:
 
     async def pipeline_task(self):
         while True:
-            image = await self.source.frame()
-            self.iteration = PipelineIteration(image)
 
-            filtered_image = self.pipeline.pipeline.apply_image_filters(image)
+            self.iteration = PipelineIteration(self.source.frame)
+
+            filtered_image = self.pipeline.pipeline.apply_image_filters(self.iteration.image)
             self.iteration.processed_image = filtered_image
 
             raw_targets = self.pipeline.pipeline.detector.detect(filtered_image)
@@ -31,7 +31,7 @@ class PipelineTask:
             targets = self.pipeline.pipeline.apply_target_filters(raw_targets)
             self.iteration.targets = targets
 
-            self.iteration.directions = self.pipeline.pipeline.get_directions(targets, image)
+            self.iteration.directions = self.pipeline.pipeline.get_directions(targets, self.iteration.image)
 
     def run_pipeline(self, source: VideoCamera):
         pass

@@ -9,6 +9,13 @@ from starlette.types import Send
 from crossair.camera_utilities.video_camera import VideoCamera
 from crossair.dependencies.camera_dependency import ensure_camera
 
+IMAGE_CONTENT_CACHE_SIZE = 32
+
+
+@lru_cache(maxsize=IMAGE_CONTENT_CACHE_SIZE)
+def prepare_image(encoded_image):
+    return b'--frame\r\nContent-Type: image/jpeg\r\n\r\n' + bytearray(encoded_image) + b'\r\n'
+
 
 class ImageStream(StreamingResponse):
 
@@ -56,11 +63,3 @@ def provide_session_handler(request: Request, camera: VideoCamera = Depends(ensu
         return generate()
 
     return session_handler
-
-
-IMAGE_CONTENT_CACHE_SIZE = 32
-
-
-@lru_cache(maxsize=IMAGE_CONTENT_CACHE_SIZE)
-def prepare_image(encoded_image):
-    return b'--frame\r\nContent-Type: image/jpeg\r\n\r\n' + bytearray(encoded_image) + b'\r\n'
