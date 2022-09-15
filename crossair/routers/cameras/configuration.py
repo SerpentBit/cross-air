@@ -9,12 +9,12 @@ from crossair.dependencies.camera_dependency import ensure_camera
 camera_configuration = APIRouter()
 
 
-@camera_configuration.get("/camera/{source}/configuration")
+@camera_configuration.get("/cameras/{source}/configuration")
 async def get_camera_configuration(camera: CameraHandler = Depends(ensure_camera)):
     return camera.camera.camera_info()
 
 
-@camera_configuration.put("/camera/{source}/configuration", response_model=CameraConfigurationResponse)
+@camera_configuration.put("/cameras/{source}/configuration", response_model=CameraConfigurationResponse)
 async def change_camera_configuration(source: CameraSource, configuration: CameraConfiguration,
                                       camera: CameraHandler = Depends(ensure_camera)):
     try:

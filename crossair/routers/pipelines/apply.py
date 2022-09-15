@@ -4,7 +4,7 @@ import fastapi
 from fastapi import Depends, UploadFile
 from pydantic import BaseModel
 
-from crossair.dependencies.pipelines import provide_pipeline
+from .dependencies import provide_pipeline
 
 apply = fastapi.APIRouter()
 

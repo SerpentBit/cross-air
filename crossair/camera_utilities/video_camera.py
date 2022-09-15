@@ -35,6 +35,9 @@ class VideoCamera:
         except asyncio.CancelledError:
             logger.debug(f"Camera thread for camera {self.source} cancelled")
 
+    async def __anext__(self):
+        yield self.encoded_frame
+
     def encode_frame(self, image):
         success, encoded_image = cv2.imencode(self.encode_type, image)
         if not success:

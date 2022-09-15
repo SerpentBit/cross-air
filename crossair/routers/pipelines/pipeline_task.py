@@ -1,5 +1,6 @@
+from ovl.utils.types import VisionLike
+
 from crossair.camera_utilities.video_camera import VideoCamera
-from crossair.pipeline_utilities.pipeline import Pipeline
 
 
 class PipelineIteration:
@@ -12,26 +13,25 @@ class PipelineIteration:
 
 
 class PipelineTask:
-    def __init__(self, pipline: Pipeline, source: VideoCamera):
-        self.pipeline = pipline
+    def __init__(self, pipline: VisionLike, source: VideoCamera):
+        self.pipeline: VisionLike = pipline
         self.task = None
         self.iteration = None
         self.source = source
 
     async def pipeline_task(self):
         while True:
-
             self.iteration = PipelineIteration(self.source.frame)
 
-            filtered_image = self.pipeline.pipeline.apply_image_filters(self.iteration.image)
+            filtered_image = self.pipeline.apply_image_filters(self.iteration.image)
             self.iteration.processed_image = filtered_image
 
-            raw_targets = self.pipeline.pipeline.detector.detect(filtered_image)
+            raw_targets = self.pipeline.detector.detect(filtered_image)
             self.iteration.targets = raw_targets
-            targets = self.pipeline.pipeline.apply_target_filters(raw_targets)
+            targets = self.pipeline.apply_target_filters(raw_targets)
             self.iteration.targets = targets
 
-            self.iteration.directions = self.pipeline.pipeline.get_directions(targets, self.iteration.image)
+            self.iteration.directions = self.pipeline.get_directions(targets, self.iteration.image)
 
     def run_pipeline(self, source: VideoCamera):
         pass
