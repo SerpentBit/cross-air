@@ -1,14 +1,13 @@
 from fastapi import APIRouter, HTTPException, Depends
 from starlette import status
 
-from crossair.dependencies.pipelines import extract_pipeline
-from crossair.pipeline_utilities.pipeline import Pipeline
+from crossair.pipelines.dependencies import extract_pipeline
 
 pipeline_management = APIRouter()
 
 
 @pipeline_management.post("/create")
-async def create_pipeline(pipeline_id: str, pipeline: Pipeline = Depends(extract_pipeline)):
+async def create_pipeline(pipeline_id: str, pipeline=Depends(extract_pipeline)):
     raise HTTPException(status_code=status.HTTP_423_LOCKED, detail="Creating Pipelines isn't implement yet")
 
 

@@ -3,7 +3,7 @@ import structlog
 import uvicorn
 from starlette.middleware.cors import CORSMiddleware
 
-from crossair.routers.routers import routers
+from crossair.cameras.base_router import cameras_router
 
 logger = structlog.get_logger(__name__)
 
@@ -21,7 +21,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-for router in routers:
+ROUTERS = (cameras_router, pipelines_router)
+for router in ROUTERS:
     app.include_router(router)
 
 if __name__ == "__main__":

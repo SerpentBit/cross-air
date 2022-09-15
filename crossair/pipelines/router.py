@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 
-from crossair.dependencies.pipelines import provide_pipeline
+from crossair.pipelines.dependencies import provide_pipeline
 
 pipeline_router = APIRouter(prefix="/{pipeline_id}")
 

@@ -54,5 +54,6 @@ class VideoCamera:
         return {
             "source": self.source,
             "encode_type": self.encode_type,
+            "status": "active",
             **properties
         }
