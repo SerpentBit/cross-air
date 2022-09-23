@@ -55,7 +55,7 @@ async def ensure_camera(source: CameraSource, uuid: str = Depends(camera_session
             del camera_handlers[source]
 
 
-async def get_camera(source: CameraSource) -> Union[CameraHandler, None]:
+async def get_camera(source: CameraSource) -> Union[CameraHandler, bool]:
     """
     A dependency that can be used to access an existing camera, doesn't open the camera on request,
     :param source: the way to access the camera, look at docs for additional information,
@@ -70,4 +70,4 @@ async def get_camera(source: CameraSource) -> Union[CameraHandler, None]:
             raise HTTPException(status_code=status.HTTP_412_PRECONDITION_FAILED,
                                 detail=f"The Camera source '{source}' isn't available")
         else:
-            return None
+            return False
