@@ -21,7 +21,7 @@ class VideoCamera:
         self.encode_type = encode_type
         self.encoded_frame = None
         self.camera_thread = asyncio.create_task(self.image_thread(), name=f"camera-thread-{source}")
-        self.active = False
+        self.active = True
 
     def read_and_encode(self):
         success, image = self.camera.read()

@@ -1,8 +1,4 @@
-from typing import Dict
-
 import pydantic
-
-from crossair.camera_utilities.typing import CameraSource
 
 
 class CameraStatus(pydantic.BaseModel):

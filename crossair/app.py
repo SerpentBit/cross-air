@@ -4,6 +4,7 @@ import uvicorn
 from starlette.middleware.cors import CORSMiddleware
 
 from crossair.cameras.base_router import cameras_router
+from crossair.pipelines.base_router import pipelines_router
 
 logger = structlog.get_logger(__name__)
 

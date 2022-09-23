@@ -3,14 +3,15 @@ import typing
 from starlette.background import BackgroundTask
 from starlette.responses import StreamingResponse
 from starlette.types import Send
+from starlette import status
 
-from crossair.dependencies.session import IMAGE_STREAM_MEDIA_TYPE
+from crossair.cameras.stream.dependencies import IMAGE_STREAM_MEDIA_TYPE
 
 
 class ImageStream(StreamingResponse):
     def __init__(self,
                  content: typing.Any,
-                 status_code: int = 200,
+                 status_code: int = status.HTTP_200_OK,
                  headers: dict = None,
                  media_type: str = None,
                  background: BackgroundTask = None) -> None:

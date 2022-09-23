@@ -14,21 +14,21 @@ green_circle.detector = ovl.ThresholdDetector(threshold=ovl.HSV.green)
 yellow_circle = copy.copy(red_circle)
 yellow_circle.detector = ovl.ThresholdDetector(threshold=ovl.HSV.yellow)
 
-pipelines = {"Red": red_circle, "Green": green_circle, "Yellow": yellow_circle}
+PIPELINES = {"Red": red_circle, "Green": green_circle, "Yellow": yellow_circle}
 
 
 async def provide_pipeline(pipeline_id) -> ovl.Vision:
-    if pipeline_id not in pipelines:
+    if pipeline_id not in PIPELINES:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,
                             detail=f"Pipeline {pipeline_id} not found")
-    return pipelines[pipeline_id]
+    return PIPELINES[pipeline_id]
 
 
 async def add_pipeline(pipeline_id, pipeline):
     if pipeline_id in pipeline:
         raise HTTPException(status_code=status.HTTP_409_CONFLICT,
                             detail=f"Pipeline {pipeline_id} already exists")
-    pipelines[pipeline_id] = pipeline
+    PIPELINES[pipeline_id] = pipeline
     return pipeline_id, pipeline
 
 
